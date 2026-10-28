@@ -1,0 +1,1369 @@
+/* Extreme SCADA User Management & Telemetry Dashboard CSS */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --scada-blue: #2058a8;
+  --scada-blue-hover: #174280;
+  --scada-water-bg: #E8F4FD;
+  --scada-water-border: #BAE6FD;
+  --scada-tech-bg: #FFF1E6;
+  --scada-tech-border: #FED7AA;
+  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F8FAFC;
+  font-family: var(--font-family);
+  color: #1E293B;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ORIGINAL SCADA TOPBAR */
+.scada-original-navbar {
+  width: 100%;
+  background: #FFFFFF;
+  border-bottom: 2px solid #E2E8F0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.scada-nav-container {
+  width: 100%;
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scada-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.scada-menu-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.brand-label {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--scada-blue);
+  letter-spacing: -0.3px;
+}
+
+.scada-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scada-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.scada-nav-btn:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+
+.scada-nav-btn.btn-active {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border-color: var(--scada-blue);
+  box-shadow: 0 2px 6px rgba(32, 88, 168, 0.35);
+}
+
+.scada-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.scada-user-greeting {
+  font-size: 14px;
+  color: #475569;
+}
+
+.scada-user-greeting b {
+  color: #0F172A;
+}
+
+.scada-user-greeting i {
+  color: var(--scada-blue);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.scada-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #EF4444;
+  color: #FFFFFF;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.scada-logout-btn:hover {
+  background: #DC2626;
+}
+
+.scada-login-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* LOGOUT MODAL */
+.scada-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.scada-logout-modal-dialog {
+  background: #FFFFFF;
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.logout-modal-title {
+  margin: 0 0 12px 0;
+  color: var(--scada-blue);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.logout-modal-message {
+  margin: 0 0 20px 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+.logout-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn-logout-yes {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-logout-no {
+  background: #EF4444;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* TOAST BANNER */
+.scada-toast-banner {
+  position: fixed;
+  top: 70px;
+  right: 24px;
+  background: #0F172A;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  font-size: 13px;
+  font-weight: 600;
+  border-left: 4px solid var(--scada-blue);
+}
+
+.toast-check {
+  color: #38BDF8;
+}
+
+/* MAIN CONTAINER */
+.sketch-main-container {
+  width: 100%;
+  padding: 24px 32px 60px 32px;
+}
+
+/* ACTIVE IN LAST 20 MINUTES BANNER */
+.active-users-banner {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-left: 5px solid #10B981;
+  border-radius: 8px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.active-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.live-ping-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: pingAnimation 2s infinite;
+}
+
+@keyframes pingAnimation {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(0.9); }
+}
+
+.active-names-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.active-user-badge {
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.active-count-tag {
+  font-size: 12px;
+  font-weight: 800;
+  color: #047857;
+  background: #D1FAE5;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* SUBNAV CONTROLS ROW */
+.sketch-subnav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.sketch-tabs-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-filter-btn {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.tab-filter-btn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+.active-all {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border-color: var(--scada-blue);
+}
+
+.active-water {
+  background: #0284C7;
+  color: #FFFFFF;
+  border-color: #0284C7;
+}
+
+.active-tech {
+  background: #EA580C;
+  color: #FFFFFF;
+  border-color: #EA580C;
+}
+
+.role-filter-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.scada-role-dropdown {
+  padding: 7px 10px;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  background: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.sketch-search-capsule {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 320px;
+  gap: 8px;
+}
+
+.sketch-search-capsule input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 13px;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94A3B8;
+}
+
+.sketch-add-user-btn {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.sketch-add-user-btn:hover {
+  background: var(--scada-blue-hover);
+}
+
+/* RESPONSIVE 4-COLUMN CARD GRID */
+.sketch-fullwidth-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1300px) {
+  .sketch-fullwidth-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 950px) {
+  .sketch-fullwidth-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .sketch-fullwidth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SKETCH COMPACT CARD */
+.sketch-compact-card {
+  border-radius: 14px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 250px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.compact-water {
+  background-color: var(--scada-water-bg);
+  border: 1.5px solid var(--scada-water-border);
+}
+
+.compact-tech {
+  background-color: var(--scada-tech-bg);
+  border: 1.5px solid var(--scada-tech-border);
+}
+
+.sketch-compact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.compact-corner-icon {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 20px;
+}
+
+.compact-avatar-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px auto;
+}
+
+.compact-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.compact-live-beacon {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: #10B981;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.compact-info-center {
+  text-align: center;
+  flex: 1;
+}
+
+.compact-name {
+  margin: 0 0 3px 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.compact-position {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.compact-badges-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.compact-role-pill {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+}
+
+.compact-category-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+.compact-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed rgba(0,0,0,0.1);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.compact-company-badge {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.company-word-extreme {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--scada-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.company-word-endeavors {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748B;
+}
+
+.compact-contact-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.compact-phone {
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.compact-view-link {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--scada-blue);
+}
+
+/* MODAL OVERLAY & CARD */
+.sketch-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.sketch-modal-card {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-top-accent {
+  background: #F8FAFC;
+  border-bottom: 2px solid #E2E8F0;
+  padding: 18px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.modal-category-tag {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--scada-blue);
+  text-transform: uppercase;
+}
+
+.modal-operator-title {
+  margin: 3px 0 0 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.modal-sub-id {
+  margin: 3px 0 0 0;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.modal-close-glyph {
+  background: #E2E8F0;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.modal-body-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* VIEW SUMMARY */
+.view-summary-box {
+  background: #F1F5F9;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.summary-avatar-wrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.summary-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #FFFFFF;
+}
+
+.summary-active-beacon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: #10B981;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+}
+
+.summary-text-info h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.summary-org {
+  margin: 2px 0 6px 0;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.summary-role-pill {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.summary-contact-row {
+  margin-left: auto;
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+}
+
+.contact-label {
+  display: block;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.contact-value {
+  color: #0F172A;
+}
+
+/* SCADA ROUTING MATRIX IN MODAL */
+.modal-scada-routing-matrix {
+  margin-bottom: 24px;
+}
+
+.matrix-heading {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--scada-blue);
+  text-transform: uppercase;
+}
+
+.matrix-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.matrix-column-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.matrix-column-card h5 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1E293B;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 4px;
+}
+
+.channel-check-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 4px 0;
+}
+
+.text-on { color: #16A34A; font-weight: 800; }
+.text-off { color: #94A3B8; font-weight: 600; }
+
+/* MODAL QUICK ACTIONS */
+.modal-quick-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-scada-edit {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-scada-reset {
+  background: #F59E0B;
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-scada-sendlink {
+  background: #10B981;
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-scada-delete {
+  background: #EF4444;
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* EDIT FORM */
+.sketch-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.form-group input, .form-group select {
+  padding: 8px 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.scada-fieldsets-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.scada-fieldset {
+  border: 1.5px solid var(--scada-blue);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.scada-fieldset legend {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--scada-blue);
+  padding: 0 6px;
+  text-transform: uppercase;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.form-submit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn-cancel {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-save {
+  background: var(--scada-blue);
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 6px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* ============================================================ */
+/* SIMULATED SCADA DASHBOARD STYLES */
+/* ============================================================ */
+.scada-dashboard-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dash-system-banner {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.scada-live-pulse-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10B981;
+  color: #34D399;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.live-dot-green {
+  width: 8px;
+  height: 8px;
+  background: #10B981;
+  border-radius: 50%;
+}
+
+.banner-text {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+.banner-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.dash-alarm-clean {
+  color: #34D399;
+  font-weight: 700;
+}
+
+.dash-audio-status {
+  color: #38BDF8;
+}
+
+.dash-section-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--scada-blue);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* TANKS GRID */
+.tanks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .tanks-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tank-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.tank-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.tank-card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.tank-zone-tag {
+  font-size: 10px;
+  font-weight: 700;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.tank-visual-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.tank-cylinder {
+  width: 90px;
+  height: 150px;
+  background: #F1F5F9;
+  border: 3px solid #CBD5E1;
+  border-radius: 12px 12px 6px 6px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tank-water-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #38BDF8 0%, #0284C7 100%);
+  transition: height 0.3s ease;
+}
+
+.tank-water-fill.fill-high {
+  background: linear-gradient(180deg, #60A5FA 0%, #2563EB 100%);
+}
+
+.tank-water-fill.fill-normal {
+  background: linear-gradient(180deg, #2DD4BF 0%, #0F766E 100%);
+}
+
+.tank-level-readout {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.level-big {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0F172A;
+}
+
+.level-unit {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748B;
+  margin-left: 2px;
+}
+
+.tank-metrics {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metric-row span {
+  color: #64748B;
+}
+
+.text-warning { color: #D97706; }
+.text-danger { color: #DC2626; }
+.text-success { color: #16A34A; }
+
+.tank-slider-control {
+  border-top: 1px dashed #E2E8F0;
+  padding-top: 10px;
+  font-size: 11px;
+}
+
+.tank-slider-control label {
+  display: block;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.tank-slider-control input {
+  width: 100%;
+}
+
+/* PUMPS GRID */
+.pumps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 850px) {
+  .pumps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pump-station-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.station-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.station-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.station-header .sub {
+  font-size: 11px;
+  color: #64748B;
+}
+
+.station-badge-online {
+  background: #DCFCE7;
+  color: #15803D;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.station-pumps-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pump-unit {
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.pump-running {
+  background: #ECFDF5;
+  border: 1.5px solid #A7F3D0;
+}
+
+.pump-stopped {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+}
+
+.pump-icon-wrap {
+  font-size: 24px;
+  color: #10B981;
+}
+
+.pump-stopped .pump-icon-wrap {
+  color: #94A3B8;
+}
+
+.pump-info strong {
+  display: block;
+  font-size: 12px;
+  color: #0F172A;
+}
+
+.pump-info span {
+  font-size: 10px;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.btn-toggle-pump {
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-stop {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.btn-start {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.station-telemetry-readouts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.readout-box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.readout-box .lbl {
+  font-size: 10px;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.readout-box .val {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+/* PRV Station */
+.prv-telemetry-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 14px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.prv-gauge-card {
+  text-align: center;
+}
+
+.gauge-lbl {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748B;
+}
+
+.gauge-val {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0F172A;
+}
+
+.gauge-note {
+  display: block;
+  font-size: 10px;
+  color: #94A3B8;
+}
+
+.prv-center-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  color: var(--scada-blue);
+}
+
+.valve-pct {
+  font-size: 10px;
+  font-weight: 800;
+  background: #EFF6FF;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.modem-info-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #64748B;
+  border-top: 1px dashed #E2E8F0;
+  padding-top: 10px;
+}

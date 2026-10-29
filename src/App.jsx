@@ -3,11 +3,13 @@ import { initialScadaUsers, ORIGINAL_ROLES, isActiveLast20Mins } from './mockDat
 import ScadaTopBar from './components/ScadaTopBar';
 import ScadaDashboard from './components/ScadaDashboard';
 import SketchCard from './components/SketchCard';
+import SketchListView from './components/SketchListView';
 import SketchModal from './components/SketchModal';
 import './App.css';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('users'); // 'dashboard' | 'users'
+  const [viewMode, setViewMode] = useState('card'); // 'card' | 'list' (default card)
   const [users, setUsers] = useState(initialScadaUsers);
   const [search, setSearch] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
@@ -144,6 +146,26 @@ export default function App() {
               )}
             </div>
 
+            {/* View Mode Toggle: Cards vs List */}
+            <div className="sketch-view-toggle">
+              <button
+                type="button"
+                className={`sketch-toggle-btn ${viewMode === 'card' ? 'active' : ''}`}
+                onClick={() => setViewMode('card')}
+                title="Card Grid View (Default)"
+              >
+                <i className="fas fa-th-large"></i> Cards
+              </button>
+              <button
+                type="button"
+                className={`sketch-toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
+                onClick={() => setViewMode('list')}
+                title="Table List View"
+              >
+                <i className="fas fa-bars"></i> List
+              </button>
+            </div>
+
             {/* Add User Button */}
             <button className="sketch-add-user-btn" onClick={handleAddNew}>
               <i className="fas fa-user-plus"></i>
@@ -151,16 +173,26 @@ export default function App() {
             </button>
           </section>
 
-          {/* Full-width Responsive 4-Column Card Grid */}
-          <div className="sketch-fullwidth-grid">
-            {filteredUsers.map(user => (
-              <SketchCard
-                key={user.userId}
-                user={user}
-                onOpenDetail={handleOpenDetail}
-              />
-            ))}
-          </div>
+          {/* Conditional Display: Full-width 4-Column Card Grid vs List Table */}
+          {viewMode === 'card' ? (
+            <div className="sketch-fullwidth-grid">
+              {filteredUsers.map(user => (
+                <SketchCard
+                  key={user.userId}
+                  user={user}
+                  onOpenDetail={handleOpenDetail}
+                />
+              ))}
+            </div>
+          ) : (
+            <SketchListView
+              users={filteredUsers}
+              onOpenDetail={handleOpenDetail}
+              onSendLink={handleSendLink}
+              onResetPassword={handleResetPassword}
+              onDelete={handleDelete}
+            />
+          )}
 
           {filteredUsers.length === 0 && (
             <div className="sketch-empty-notice">

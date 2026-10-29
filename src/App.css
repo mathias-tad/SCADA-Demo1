@@ -2156,3 +2156,239 @@ body {
   height: auto;
   background: #11151c;
 }
+
+/* === SKETCH VIEW MODE TOGGLE (CARDS vs LIST) === */
+.sketch-view-toggle {
+  display: flex;
+  align-items: center;
+  background: #F1F5F9;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1.5px solid #CBD5E1;
+}
+
+.sketch-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #64748B;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sketch-toggle-btn:hover {
+  color: #0F172A;
+}
+
+.sketch-toggle-btn.active {
+  background: #FFFFFF;
+  color: #0284C7;
+  border: 1px solid #BAE6FD;
+  box-shadow: 0 2px 4px rgba(2, 132, 199, 0.1);
+}
+
+/* === SKETCH LIST VIEW TABLE === */
+.sketch-list-wrapper {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 2px solid #E2E8F0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  overflow-x: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.sketch-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.sketch-list-table thead tr {
+  background: #F8FAFC;
+  border-bottom: 2px solid #E2E8F0;
+}
+
+.sketch-list-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 800;
+  color: #475569;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.sketch-list-table tbody tr {
+  border-bottom: 1px dashed #E2E8F0;
+  transition: all 0.15s ease;
+}
+
+.sketch-list-table tbody tr:hover {
+  background: #F0FDF4;
+}
+
+.sketch-table-row.row-water:hover {
+  background: #F0F9FF;
+}
+
+.sketch-list-table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+/* Beacon */
+.sketch-status-beacon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sketch-beacon-live {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+  animation: d2-pulse 1.8s infinite;
+}
+.sketch-beacon-idle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #CBD5E1;
+}
+
+/* User cell */
+.sketch-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.sketch-avatar-mini-wrap {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.sketch-avatar-mini {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1.5px solid #CBD5E1;
+}
+.sketch-corner-glyph {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 12px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  padding: 1px;
+}
+.sketch-user-meta {
+  display: flex;
+  flex-direction: column;
+}
+.sketch-user-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0F172A;
+}
+.sketch-user-org {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 600;
+}
+
+/* Contact */
+.sketch-contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sketch-link-phone, .sketch-link-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #334155;
+  text-decoration: none;
+  font-weight: 600;
+}
+.sketch-link-phone:hover, .sketch-link-email:hover {
+  color: #0284C7;
+}
+
+/* Role pill */
+.sketch-table-role-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Channel badges */
+.sketch-channel-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.sketch-ch-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+}
+.ch-on {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+.ch-off {
+  background: #F8FAFC;
+  color: #94A3B8;
+  opacity: 0.6;
+}
+
+/* Actions */
+.sketch-actions-cluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+.sketch-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-edit { background: #E0F2FE; color: #0284C7; border-color: #BAE6FD; }
+.btn-edit:hover { background: #0284C7; color: #FFFFFF; }
+.btn-link { background: #F3E8FF; color: #7E22CE; border-color: #E9D5FF; }
+.btn-link:hover { background: #7E22CE; color: #FFFFFF; }
+.btn-reset-pw { background: #FEF3C7; color: #B45309; border-color: #FDE68A; }
+.btn-reset-pw:hover { background: #B45309; color: #FFFFFF; }
+.btn-delete-user { background: #FEE2E2; color: #DC2626; border-color: #FECACA; }
+.btn-delete-user:hover { background: #DC2626; color: #FFFFFF; }
+

@@ -4,19 +4,35 @@ import ScadaTopBar from './components/ScadaTopBar';
 import ScadaDashboard from './components/ScadaDashboard';
 import SketchCard from './components/SketchCard';
 import SketchListView from './components/SketchListView';
-import SketchModal from './components/SketchModal';
+import AirbnbModal from './components/AirbnbModal';
 import './App.css';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('users'); // 'dashboard' | 'users'
   const [viewMode, setViewMode] = useState('card'); // 'card' | 'list' (default card)
-  const [users, setUsers] = useState(initialScadaUsers);
+  const [users, setUsers] = useState(() => {
+    try {
+      const saved = localStorage.getItem('eemacs_scada_users');
+      return saved ? JSON.parse(saved) : initialScadaUsers;
+    } catch {
+      return initialScadaUsers;
+    }
+  });
   const [search, setSearch] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
   const [selectedUser, setSelectedUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNew, setIsNew] = useState(false);
   const [toast, setToast] = useState('');
+
+  // Persist users across refreshes
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('eemacs_scada_users', JSON.stringify(users));
+    } catch (e) {
+      console.warn('Could not persist users to storage:', e);
+    }
+  }, [users]);
 
   const triggerToast = (msg) => {
     setToast(msg);
@@ -212,7 +228,7 @@ export default function App() {
       )}
 
       {/* Modal for Details and Editing */}
-      <SketchModal
+      <AirbnbModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         user={selectedUser}
